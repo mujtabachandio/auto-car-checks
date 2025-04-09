@@ -44,21 +44,6 @@ const PRICING_CARDS = [
       'Warranties',
     ],
   },
-  {
-    tier: 'testing',
-    title: 'testing',
-    price: '$0.50',
-    priceId: 'price_1RC0xrHT4DUIY4yQIUYgnCoc',
-    features: [
-      '1 Vehicle Report',
-      'Ownership Costs',
-      'Market Value Range',
-      'Owners History',
-      'Vehicle Specifications',
-      'Safety Recall Status',
-      'Warranties',
-    ],
-  }
 ];
 
 export default function PricingPage() {

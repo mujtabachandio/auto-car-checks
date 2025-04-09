@@ -13,7 +13,7 @@ export default function Example() {
      {/* Tawk.to Script */}
      <Script id="tawkto-script" strategy="afterInteractive">
         {`
-          var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+          var Tawk_API = 67f6a0681340201907628c73 || {}, Tawk_LoadStart = new Date();
           (function() {
             var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
             s1.async = true;
