@@ -1,5 +1,6 @@
 import Link from "next/link";
 import About from "./sections/About";
+import Script from "next/script";
 import Services from "./sections/Services";
 import Offer from "./sections/Offer";
 import Features from "./sections/Features";
@@ -9,19 +10,20 @@ import Footer from "./sections/Footer";
 export default function Example() {
   return (
     <>
-    <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/67f6a0681340201907628c73/1iodm56hq';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script-->
+     {/* Tawk.to Script */}
+     <Script id="tawkto-script" strategy="afterInteractive">
+        {`
+          var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+          (function() {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/YOUR_PROPERTY_ID/1abcdef';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+          })();
+        `}
+      </Script>
     <main
       className="bg-white bg-cover bg-center relative"
       style={{ backgroundImage: "url('/bg1.jpg')" }}
