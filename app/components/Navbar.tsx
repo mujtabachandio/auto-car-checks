@@ -27,7 +27,7 @@ const Navbar = () => {
                 width={100}
                 height={476}
                 src="/logo5.png" // Update with the correct logo path
-                alt="FASTCARCHECKS"
+                alt=""
                 className="h-20" // Adjust the height as needed
               />
             </a>
@@ -72,8 +72,8 @@ const Navbar = () => {
                 <Image
                   width={474}
                   height={476}
-                  src="/path/to/your/logo.png" // Update with the correct logo path
-                  alt="FASTCARCHECKS"
+                  src="/logo5.png" // Update with the correct logo path
+                  alt=""
                   className="h-10" // Adjust the height as needed
                 />
               </a>
