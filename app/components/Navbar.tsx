@@ -7,10 +7,10 @@ import { PhoneCallIcon } from 'lucide-react'
 import Image from 'next/image'
 
 const navigation = [
-  { name: 'HOME', href: '#' },
-  { name: 'ABOUT US', href: '#' },
+  { name: 'HOME', href: '/' },
+  { name: 'ABOUT US', href: '#about' },
   { name: 'PRICING', href: '/pricing' },
-  { name: 'CONTACT US', href: '#' },
+  { name: 'CONTACT US', href: '/' },
 ]
 
 const Navbar = () => {

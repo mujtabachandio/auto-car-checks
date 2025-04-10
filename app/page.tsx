@@ -1,29 +1,16 @@
 import Link from "next/link";
 import About from "./sections/About";
-import Script from "next/script";
 import Services from "./sections/Services";
 import Offer from "./sections/Offer";
 import Features from "./sections/Features";
 import {Button} from "@/components/ui/button";
 import Footer from "./sections/Footer";
+import Navbar from "./components/Navbar";
 
 export default function Example() {
   return (
     <>
-     {/* Tawk.to Script */}
-     <Script id="tawkto-script" strategy="afterInteractive">
-        {`
-          var Tawk_API = 67f6a0681340201907628c73 || {}, Tawk_LoadStart = new Date();
-          (function() {
-            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-            s1.async = true;
-            s1.src = 'https://embed.tawk.to/YOUR_PROPERTY_ID/1abcdef';
-            s1.charset = 'UTF-8';
-            s1.setAttribute('crossorigin', '*');
-            s0.parentNode.insertBefore(s1, s0);
-          })();
-        `}
-      </Script>
+     <Navbar />
     <main
       className="bg-white bg-cover bg-center relative"
       style={{ backgroundImage: "url('/bg1.jpg')" }}
@@ -57,7 +44,7 @@ export default function Example() {
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <Link
-                href="#"
+                href="/pricing"
                 className="rounded-md bg-red-600 duration-300 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-red-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-900"
               >
                 Get started
@@ -79,9 +66,10 @@ export default function Example() {
         </div>
       </div>
     </main>
-    <span id="about">
+    
+    <section id="about">
     <About />
-      </span>
+    </section>
     <Services />
     <Offer />
     <Features />

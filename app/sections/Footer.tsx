@@ -3,7 +3,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Phone, Mail, MapPin, ArrowUp } from 'lucide-react';
+import { Mail, MapPin, ArrowUp } from 'lucide-react';
 import Image from 'next/image';
 
 const Footer = () => {
@@ -22,9 +22,6 @@ const Footer = () => {
           <h3 className="text-2xl font-semibold text-white mb-4 md:mb-0 text-center md:text-left">
             Ready to care for your car?
           </h3>
-          <Button variant="outline" className="bg-transparent border-white text-white hover:bg-white hover:text-primary-red mt-4 md:mt-0">
-            <Link href="/contact-us">REQUEST A QUOTE</Link>
-          </Button>
         </div>
 
         {/* Footer Content */}
@@ -34,24 +31,25 @@ const Footer = () => {
             <div className="mb-6">
               <div className="h-8 w-auto mb-4">
                 <span className="text-white font-bold text-2xl">
-                  <span className="text-white">FAST</span>
+                  <span className="text-white">AUTO</span>
                   <span className="text-primary-red">CAR</span>
                   <span className="text-white"> CHECKS</span>
                 </span>
               </div>
             </div>
             <div className="space-y-4">
-              <div className="flex items-center">
+              {/* <div className="flex items-center">
                 <Phone className="h-5 w-5 mr-3 text-primary-red" />
                 <Link href="tel:+18886358907" className="hover:text-primary-red">+1 (888) 635-8907</Link>
-              </div>
+              </div> */}
               <div className="flex items-center">
                 <MapPin className="h-5 w-5 mr-3 text-primary-red" />
                 <span>United States</span>
               </div>
               <div className="flex items-center">
                 <Mail className="h-5 w-5 mr-3 text-primary-red" />
-                <Link href="mailto:info@fastcarchecks.com" className="hover:text-primary-red">info@fastcarchecks.com</Link>
+                <Link href="mailto:info@fastcarchecks.com" className="hover:text-primary-red">autocarchecksss@gmail.com
+                </Link>
               </div>
             </div>
           </div>
@@ -80,24 +78,28 @@ const Footer = () => {
           </div>
 
           {/* Certification */}
-          <div className="flex flex-col items-center md:items-end">
-            <Image
-            height={100}
-            width={100}
-              src="https://ext.same-assets.com/2314917573/219512541.png"
-              alt="NMVTIS and DVLA certified"
-              className="h-24 mb-4"
-            />
-            <p className="text-sm text-gray-400 text-center md:text-right">
-              Fast Car Checks is an Approved NMVTIS and DVLA Data Provider.
-            </p>
-          </div>
+          {/* Certification */}
+<div className="flex flex-col items-center md:items-end text-center md:text-right">
+  <div className="relative w-40 h-40 mb-4">
+    <Image
+      src="https://ext.same-assets.com/2314917573/219512541.png"
+      alt="NMVTIS and DVLA certified"
+      fill
+      className="object-contain"
+      sizes="(max-width: 968px) 200px, 260px"
+    />
+  </div>
+  <p className="text-sm text-gray-400">
+    Fast Car Checks is an Approved NMVTIS and DVLA Data Provider.
+  </p>
+</div>
+
         </div>
 
         {/* Footer Bottom Section */}
         <div className="border-t border-gray-800 pt-6">
           <p className="text-center text-sm text-gray-400">
-            Copyright © 2024 Fast Car Checks | All Rights Reserved.
+            Copyright © 2025 AUTO CAR CHECKS | All Rights Reserved.
           </p>
         </div>
 
