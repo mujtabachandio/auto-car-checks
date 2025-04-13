@@ -23,7 +23,10 @@ export async function POST(req: NextRequest) {
       clientSecret: paymentIntent.client_secret,
     });
   } catch (error) {
+    // Log the error to console
+    console.error(error);
+
+    // Return a 500 status with the error message
     return NextResponse.json({ error: 'Failed to create payment intent' }, { status: 500 });
   }
 }
-
