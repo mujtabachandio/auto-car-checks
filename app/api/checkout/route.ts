@@ -1,4 +1,4 @@
-// src/pages/api/create-payment-intent.ts
+// src/app/api/checkout/route.ts
 import { NextApiRequest, NextApiResponse } from 'next';
 import Stripe from 'stripe';
 
@@ -23,11 +23,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       res.status(200).send({
         clientSecret: paymentIntent.client_secret,
       });
-    } catch (error) {
-      // console.error('Error creating payment intent:', error);
-      // res.status(500).send({ error: 'Failed to create payment intent' });
+    } catch {
+      // Catch error without using a variable (for simplicity)
+      res.status(500).send({ error: 'Failed to create payment intent' });
     }
   } else {
-    // res.status(405).send({ error: 'Method Not Allowed' });
+    res.status(405).send({ error: 'Method Not Allowed' });
   }
 }
