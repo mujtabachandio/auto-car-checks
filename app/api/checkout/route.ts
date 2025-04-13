@@ -24,9 +24,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         clientSecret: paymentIntent.client_secret,
       });
     } catch (error) {
-      res.status(500).send({ error: 'Failed to create payment intent' });
+      // console.error('Error creating payment intent:', error);
+      // res.status(500).send({ error: 'Failed to create payment intent' });
     }
   } else {
-    res.status(405).send({ error: 'Method Not Allowed' });
+    // res.status(405).send({ error: 'Method Not Allowed' });
   }
 }
