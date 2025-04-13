@@ -1,9 +1,5 @@
 import { type SchemaTypeDefinition } from 'sanity'
-
-import  formSubmission  from './formSubmission'
+import userSubmission from './userSubmission'
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [
-    formSubmission,
-    // Add other schema types here
-  ],
+  types: [userSubmission]
 }

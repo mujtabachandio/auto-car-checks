@@ -1,39 +1,32 @@
-// app/api/checkout/route.ts
+// src/pages/api/create-payment-intent.ts
+import { NextApiRequest, NextApiResponse } from 'next';
 import Stripe from 'stripe';
-import { NextRequest, NextResponse } from 'next/server';
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2025-03-31.basil',
 });
 
-export async function POST(req: NextRequest) {
-  const { priceId } = await req.json();
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method === 'POST') {
+    try {
+      // Extract the amount from the request body
+      const { amount } = req.body;
 
-  if (!priceId) {
-    return NextResponse.json({ error: 'Missing priceId' }, { status: 400 });
-  }
+      // Create a PaymentIntent with the specified amount
+      const paymentIntent = await stripe.paymentIntents.create({
+        amount,
+        currency: 'usd',
+        automatic_payment_methods: { enabled: true },
+      });
 
-  try {
-    const session = await stripe.checkout.sessions.create({
-      mode: 'payment',
-      payment_method_types: ['card'],
-      line_items: [
-        {
-          price: priceId,
-          quantity: 1,
-        },
-      ],
-      success_url: `${req.nextUrl.origin}/success`,
-      cancel_url: `${req.nextUrl.origin}/cancel`,
-    });
-
-    return NextResponse.json({ url: session.url });
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error('Stripe error:', error.message);
-    } else {
-      console.error('Stripe error:', error);
+      // Send the client secret to the client
+      res.status(200).send({
+        clientSecret: paymentIntent.client_secret,
+      });
+    } catch (error) {
+      res.status(500).send({ error: 'Failed to create payment intent' });
     }
-    return NextResponse.json({ error: error instanceof Error ? error.message : 'An unknown error occurred' }, { status: 500 });
+  } else {
+    res.status(405).send({ error: 'Method Not Allowed' });
   }
 }
