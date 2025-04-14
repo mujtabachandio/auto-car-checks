@@ -7,10 +7,11 @@ export default function CheckoutClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const price = searchParams.get('price');
-  const name = searchParams.get('name');
+  // const name = searchParams.get('name');
   const featuresParam = searchParams.get('features');
 
   const [email, setEmail] = useState('');
+  const [userName, setUserName] = useState('');  // State for user's name
   const [country, setCountry] = useState('');
   const [vinNumber, setVinNumber] = useState('');
   const [loading, setLoading] = useState(false);
@@ -19,7 +20,7 @@ export default function CheckoutClient() {
     e.preventDefault();
     setLoading(true);
 
-    const userData = { name, email, price: parseFloat(price || '0'), country, vinNumber };
+    const userData = { name: userName, email, price: parseFloat(price || '0'), country, vinNumber }; // Send user name
 
     const res = await fetch('/api/saveUserData', {
       method: 'POST',
@@ -33,7 +34,7 @@ export default function CheckoutClient() {
       return;
     }
 
-    router.push(`/payment?price=${price}&name=${name}&features=${featuresParam}`);
+    router.push(`/payment?price=${price}&name=${userName}&features=${featuresParam}`); // Send user name to payment page
   };
 
   return (
@@ -65,6 +66,20 @@ export default function CheckoutClient() {
                 placeholder="Email Address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                className="w-full border border-gray-300 rounded-lg p-4 mt-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-lg"
+                required
+              />
+            </div>
+
+            {/* New input field for user's name */}
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700">Full Name</label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Your Full Name"
+                value={userName}
+                onChange={(e) => setUserName(e.target.value)}
                 className="w-full border border-gray-300 rounded-lg p-4 mt-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-lg"
                 required
               />

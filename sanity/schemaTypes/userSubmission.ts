@@ -1,42 +1,34 @@
-// schemas/userSubmission.js
+// schemas/userSubmission.ts
+
 export default {
   name: 'userSubmission',
-  type: 'document',
   title: 'User Submission',
+  type: 'document',
   fields: [
     {
       name: 'name',
-      type: 'string',
       title: 'Name',
+      type: 'string',
     },
     {
       name: 'email',
-      type: 'string',
       title: 'Email',
+      type: 'string',
     },
     {
       name: 'country',
-      type: 'string',
       title: 'Country',
-      options: {
-        list: [
-          { title: 'USA', value: 'usa' },
-          { title: 'Canada', value: 'canada' },
-          { title: 'Australia', value: 'australia' },
-          // Add other countries as needed
-        ],
-        layout: 'dropdown',
-      },
+      type: 'string',
     },
     {
-      name: 'vinNumber', // Changed from 'vin number' to 'vinNumber' for consistency
+      name: 'vinNumber',
+      title: 'VIN Number',
       type: 'string',
-      title: 'VIN Number', // Changed to 'string' for VIN compatibility (e.g., alphanumeric VIN)
     },
     {
       name: 'createdAt',
-      type: 'datetime',
       title: 'Created At',
+      type: 'datetime',
     },
   ],
 };
