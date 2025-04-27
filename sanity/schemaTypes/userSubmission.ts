@@ -19,6 +19,11 @@ export default {
       name: 'country',
       title: 'Country',
       type: 'string',
+    }, 
+    {
+      name: 'userPhone',
+      title: 'User Phone',
+      type: 'string',
     },
     {
       name: 'vinNumber',

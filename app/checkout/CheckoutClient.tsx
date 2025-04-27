@@ -7,20 +7,27 @@ export default function CheckoutClient() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const price = searchParams.get('price');
-  // const name = searchParams.get('name');
   const featuresParam = searchParams.get('features');
 
   const [email, setEmail] = useState('');
-  const [userName, setUserName] = useState('');  // State for user's name
+  const [userName, setUserName] = useState('');
   const [country, setCountry] = useState('');
   const [vinNumber, setVinNumber] = useState('');
+  const [contactNumber, setContactNumber] = useState(''); // <-- New state for contact number
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
-    const userData = { name: userName, email, price: parseFloat(price || '0'), country, vinNumber }; // Send user name
+    const userData = { 
+      name: userName, 
+      email, 
+      price: parseFloat(price || '0'), 
+      country, 
+      vinNumber,
+      contactNumber, // <-- Include contact number in submission
+    };
 
     const res = await fetch('/api/saveUserData', {
       method: 'POST',
@@ -34,13 +41,14 @@ export default function CheckoutClient() {
       return;
     }
 
-    router.push(`/payment?price=${price}&name=${userName}&features=${featuresParam}`); // Send user name to payment page
+    router.push(`/payment?price=${price}&name=${userName}&features=${featuresParam}`);
   };
 
   return (
     <section className="bg-gray-50 min-h-screen flex items-center justify-center py-12 px-6">
       <div className="container mx-auto flex flex-col md:flex-row gap-16 bg-white shadow-xl rounded-xl p-8 border-t-4 border-indigo-600">
-        {/* Left Column - Important Information */}
+        
+        {/* Left Column */}
         <div className="md:w-1/2 p-6 flex flex-col justify-between space-y-6">
           <h2 className="text-3xl font-bold text-gray-800 mb-4">Important Information</h2>
           <p className="text-lg text-gray-700">
@@ -48,6 +56,7 @@ export default function CheckoutClient() {
           </p>
           <ul className="space-y-4 text-lg text-gray-600">
             <li><strong>Email:</strong> For order confirmation and communication.</li>
+            <li><strong>Contact Number:</strong> For urgent contact if needed.</li>
             <li><strong>VIN Number:</strong> Required to generate the VIN report.</li>
             <li><strong>Country:</strong> To ensure accurate shipping and regional customization of your VIN report.</li>
           </ul>
@@ -71,7 +80,6 @@ export default function CheckoutClient() {
               />
             </div>
 
-            {/* New input field for user's name */}
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-700">Full Name</label>
               <input
@@ -99,7 +107,22 @@ export default function CheckoutClient() {
                 <option value="canada">Canada</option>
                 <option value="australia">Australia</option>
                 <option value="europe">Europe</option>
+                <option value="new zealand">New Zealand</option>
               </select>
+            </div>
+
+            {/* New Contact Number field */}
+            <div>
+              <label htmlFor="contactNumber" className="block text-sm font-medium text-gray-700">Contact Number</label>
+              <input
+                type="tel"
+                id="contactNumber"
+                placeholder="Contact Number"
+                value={contactNumber}
+                onChange={(e) => setContactNumber(e.target.value)}
+                className="w-full border border-gray-300 rounded-lg p-4 mt-2 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-lg"
+                required
+              />
             </div>
 
             <div>
