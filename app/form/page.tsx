@@ -16,8 +16,19 @@ export default function FormPage() {
     package: selectedPackage,
   });
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const { id, value } = e.target;
+    setFormData(prev => ({ ...prev, [id]: value }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Optional: Basic VIN validation
+    if (formData.vinNumber.length < 11) {
+      alert('Please enter a valid VIN number (usually 17 characters).');
+      return;
+    }
 
     const res = await fetch('/api/submit', {
       method: 'POST',
@@ -26,7 +37,6 @@ export default function FormPage() {
     });
 
     if (res.ok) {
-      // Redirect based on package
       const links: Record<string, string> = {
         silver: 'https://buy.stripe.com/5kA00yfVxgGug8gbJW',
         gold: 'https://buy.stripe.com/cN2bJg9x9ai609i8xL',
@@ -41,17 +51,17 @@ export default function FormPage() {
   return (
     <div className="min-h-screen bg-gray-50 py-16 px-6">
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
-        {/* Left Side: Important Information */}
+        {/* Left Side: Info */}
         <div className="space-y-4">
           <h2 className="text-2xl font-bold text-black">Important Information</h2>
           <p className="text-lg text-black/70">
-            Before proceeding with payment, please ensure you fill out your email, select your country, and provide your VIN number. This information is required for processing your payment and generating your VIN report.
+            Before proceeding with payment, please fill in your details correctly. This information is required for generating your VIN report.
           </p>
-          <ul className="space-y-3 text-black/80">
+          <ul className="space-y-3 text-black/80 list-disc list-inside">
             <li><strong>Email:</strong> For order confirmation and communication.</li>
             <li><strong>Contact Number:</strong> For urgent contact if needed.</li>
             <li><strong>VIN Number:</strong> Required to generate the VIN report.</li>
-            <li><strong>Country:</strong> To ensure accurate shipping and regional customization of your VIN report.</li>
+            <li><strong>Country:</strong> To ensure regional accuracy of your report.</li>
           </ul>
         </div>
 
@@ -64,10 +74,11 @@ export default function FormPage() {
               <input
                 id="email"
                 type="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
                 placeholder="Email Address"
                 className="w-full border border-gray-300 p-2 rounded-md mt-2"
-                required
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               />
             </div>
 
@@ -76,10 +87,11 @@ export default function FormPage() {
               <input
                 id="name"
                 type="text"
+                value={formData.name}
+                onChange={handleChange}
+                required
                 placeholder="Your Full Name"
                 className="w-full border border-gray-300 p-2 rounded-md mt-2"
-                required
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               />
             </div>
 
@@ -87,11 +99,12 @@ export default function FormPage() {
               <label htmlFor="country" className="block text-sm font-medium text-black">Select Country</label>
               <select
                 id="country"
-                className="w-full border border-gray-300 p-2 rounded-md mt-2"
+                value={formData.country}
+                onChange={handleChange}
                 required
-                onChange={(e) => setFormData({ ...formData, country: e.target.value })}
+                className="w-full border border-gray-300 p-2 rounded-md mt-2"
               >
-                <option value="" disabled selected>Select your country</option>
+                <option value="" disabled>Select your country</option>
                 <option value="USA">USA</option>
                 <option value="Canada">Canada</option>
                 <option value="Europe">Europe</option>
@@ -105,10 +118,11 @@ export default function FormPage() {
               <input
                 id="userPhone"
                 type="tel"
+                value={formData.userPhone}
+                onChange={handleChange}
+                required
                 placeholder="Contact Number"
                 className="w-full border border-gray-300 p-2 rounded-md mt-2"
-                required
-                onChange={(e) => setFormData({ ...formData, userPhone: e.target.value })}
               />
             </div>
 
@@ -117,10 +131,11 @@ export default function FormPage() {
               <input
                 id="vinNumber"
                 type="text"
+                value={formData.vinNumber}
+                onChange={handleChange}
+                required
                 placeholder="VIN Number"
                 className="w-full border border-gray-300 p-2 rounded-md mt-2"
-                required
-                onChange={(e) => setFormData({ ...formData, vinNumber: e.target.value })}
               />
             </div>
 
