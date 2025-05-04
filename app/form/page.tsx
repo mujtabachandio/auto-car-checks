@@ -1,12 +1,7 @@
-"use client"
-import React from 'react'
+// app/form/page.tsx (Server Component)
+'use client'
 import FormPage from './FormClientComponent'
 
-const page = () => {
-  return (
-      <>
-    <FormPage />
-      </>  
-)}
-
-export default page
+export default function Page() {
+  return <FormPage />
+}
