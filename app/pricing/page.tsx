@@ -12,7 +12,7 @@ export default function PricingPage() {
   const packages = [
     {
       name: 'Silver',
-      price: '€34.95',
+      price: '$34.95',
       features: [
         '1 Vehicle Report',
         'Ownership Costs',
@@ -22,7 +22,7 @@ export default function PricingPage() {
     },
     {
       name: 'Gold',
-      price: '€49.95',
+      price: '$49.95',
       features: [
         '1 Vehicle Report',
         'Ownership Costs',
@@ -34,7 +34,7 @@ export default function PricingPage() {
     },
     {
       name: 'Platinum',
-      price: '€64.95',
+      price: '$64.95',
       features: [
         '1 Vehicle Report',
         'Ownership Costs',
